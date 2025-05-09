@@ -1,9 +1,10 @@
 import streamlit as st
-import gdown
-import tensorflow as tf
-import io
 from PIL import Image
 import numpy as np
+import tensorflow as tf
+import pandas as pd
+import io
+import gdown
 import plotly.express as px
 
 @st.cache_resource
@@ -18,6 +19,7 @@ def carrega_modelo():
     return interpreter
 
 def carrega_imagem():
+    # Cria um file uploader que permite o usuário carregar imagens
     uploaded_file = st.file_uploader("Arraste e solte uma imagem aqui ou clique para selecionar uma", type=['png', 'jpg', 'jpeg'])
     if uploaded_file is not None:
         # Para ler a imagem como um objeto PIL Image
@@ -59,19 +61,21 @@ def previsao(interpreter,image):
 
 
 def main():
-
     st.set_page_config(
         page_title="Classifica Folhas de Videira",
         page_icon="🍇",
     )
-
+    
     st.write("# Classifica Folhas de Videira! 🍇")
+    
 
-    #Carrega modelo
     interpreter = carrega_modelo()
-    #Carrega imagem
+
     image = carrega_imagem()
-    #Classifica
+
+    if image is not None:
+
+        previsao(interpreter,image)
 
 
 if __name__=="__main___":
