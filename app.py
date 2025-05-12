@@ -20,7 +20,8 @@ def carrega_modelo():
 
 def carrega_imagem():
     # Cria um file uploader que permite o usuário carregar imagens
-    uploaded_file = st.file_uploader("Arraste e solte uma imagem aqui ou clique para selecionar uma", type=['png', 'jpg', 'jpeg'])
+    uploaded_file = st.file_uploader("Arraste e solte uma imagem aqui ou clique para selecionar uma", type=['png', 'jpg', 'jpeg', 'PNG', 'JPG', 'JPEG']
+)
     if uploaded_file is not None:
         # Para ler a imagem como um objeto PIL Image
         image_data = uploaded_file.read()
